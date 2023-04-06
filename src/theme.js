@@ -5,9 +5,6 @@ import { createTheme } from '@mui/material/styles';
 const lightTheme = createTheme({
   palette: {
     mode: 'light',
-    background: {
-      paper: '#cec8c8'
-    },
     secondary: {
       main: '#ff80ab'
     },
