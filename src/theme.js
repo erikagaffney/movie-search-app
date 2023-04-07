@@ -1,4 +1,3 @@
-import { red } from '@mui/material/colors';
 import { createTheme } from '@mui/material/styles';
 
 // A custom theme for this app
@@ -7,9 +6,6 @@ const lightTheme = createTheme({
     mode: 'light',
     secondary: {
       main: '#ff80ab'
-    },
-    text: {
-      dark: '#1f2937'
     }
   }
 });
