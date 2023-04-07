@@ -12,9 +12,9 @@ function SearchBar({ searchValue }) {
       <Grid
         container
         spacing={0}
+        sx={{ mt: 5 }}
         alignItems="center"
         wrap="nowrap"
-        sx={{ mt: 4 }}
       >
         <TextField
           fullWidth
@@ -35,6 +35,7 @@ function SearchBar({ searchValue }) {
         />
         <IconButton
           aria-label="search"
+          className="btn-search-submit"
           type="submit"
           sx={{
             backgroundColor: 'primary.main',

@@ -5,3 +5,22 @@
 .search-text-field fieldset {
   border-radius: 6px 0 0 6px;
 }
+
+.movie-genre {
+  transform-origin: top;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.movie-genre::after {
+  position: absolute;
+  content: ' ';
+  border-radius: 4px;
+  right: -8px;
+  top: 0;
+  width: 40px;
+  height: 100%;
+  /** how to not hard code this**/
+  background-color: #ff80ab;
+  transform: skewX(-20deg);
+}
