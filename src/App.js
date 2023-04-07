@@ -1,16 +1,16 @@
 import './App.css';
 import Container from '@mui/material/Container';
 import Header from './Header';
-import EmptySeach from './EmptySearch';
+import EmptySearch from './EmptySearch';
 
 function App() {
   const searchValue = 'Dog';
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" sx={{ mb: 5 }}>
       <Header />
       <main>
-        <EmptySeach searchValue={searchValue} />
+        <EmptySearch searchValue={searchValue} />
       </main>
     </Container>
   );
