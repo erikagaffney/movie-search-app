@@ -24,3 +24,12 @@
   background-color: #ff80ab;
   transform: skewX(-20deg);
 }
+
+.movie-poster {
+  max-width: 68px;
+  object-fit: cover;
+}
+
+.critic-ratings {
+  width: 50%;
+}
