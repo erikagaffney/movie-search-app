@@ -1,43 +1,31 @@
-import './App.css';
+import '../App.css';
+import IconButton from '@mui/material/IconButton';
 import Grid from '@mui/material/Grid';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
-import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 
-function SearchBar({ searchValue }) {
+function SearchBar({ searchValue, setSearchValue, submitSearch, isLoading }) {
   return (
-    <form autoComplete="off" className="search-form">
-      <Grid
-        container
-        spacing={0}
-        sx={{ mt: 5 }}
-        alignItems="center"
-        wrap="nowrap"
-      >
+    <form autoComplete="off" onSubmit={submitSearch}>
+      <Grid container spacing={0} mt={7} alignItems="center" wrap="nowrap">
         <TextField
           fullWidth
           className="search-text-field"
+          disabled={isLoading}
           label="Search movie title..."
           value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
           id="search-movies"
           sx={{ borderRadius: '10px 0 0 10px' }}
-          InputProps={{
-            endAdornment: searchValue && (
-              <InputAdornment position="end">
-                <IconButton>
-                  <CloseIcon />
-                </IconButton>
-              </InputAdornment>
-            )
-          }}
         />
         <IconButton
           aria-label="search"
           className="btn-search-submit"
           type="submit"
+          disabled={isLoading}
           sx={{
+            '&:hover': { backgroundColor: 'primary.dark' },
+            '&:disabled': { backgroundColor: 'grey' },
             backgroundColor: 'primary.main',
             borderRadius: '0 6px 6px 0',
             p: 2
