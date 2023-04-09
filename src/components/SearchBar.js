@@ -15,8 +15,6 @@ function SearchBar({ searchValue, setSearchValue, submitSearch, isLoading }) {
           label="Search movie title..."
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
-          id="search-movies"
-          sx={{ borderRadius: '10px 0 0 10px' }}
         />
         <IconButton
           aria-label="search"

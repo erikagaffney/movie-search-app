@@ -1,5 +1,6 @@
 import '../App.css';
 import AppBar from '@mui/material/AppBar';
+import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
@@ -10,12 +11,14 @@ function Header() {
   return (
     <>
       <AppBar position="fixed" color="primary">
-        <Toolbar>
-          <img src="film-reel-white.svg" className="header-logo" />
-          <Typography variant="h5" component="h1" ml={2} flexGrow="1">
-            Movie Search
-          </Typography>
-        </Toolbar>
+        <Container maxWidth="md">
+          <Toolbar>
+            <img src="film-reel-white.svg" className="header-logo" />
+            <Typography variant="h5" component="h1" ml={2} flexGrow="1">
+              Movie Search
+            </Typography>
+          </Toolbar>
+        </Container>
       </AppBar>
       <Offset />
     </>
