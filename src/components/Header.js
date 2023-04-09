@@ -13,8 +13,13 @@ function Header() {
       <AppBar position="fixed" color="primary">
         <Container maxWidth="md">
           <Toolbar>
-            <img src="film-reel-white.svg" className="header-logo" />
-            <Typography variant="h5" component="h1" ml={2} flexGrow="1">
+            <img
+              src="film-reel-white.svg"
+              className="header-logo"
+              alt=""
+              role="presentation"
+            />
+            <Typography variant="h5" component="span" ml={2} flexGrow="1">
               Movie Search
             </Typography>
           </Toolbar>

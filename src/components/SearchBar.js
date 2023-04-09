@@ -4,16 +4,37 @@ import Grid from '@mui/material/Grid';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import TextField from '@mui/material/TextField';
 
-function SearchBar({ searchValue, setSearchValue, submitSearch, isLoading }) {
+import { useState } from 'react';
+
+function SearchBar({ triggerSearch, isLoading }) {
+  // searchBarValue
+  const [searchValue, setSearchValue] = useState('');
+  // error to show when input is empty
+  const [error, setError] = useState(false);
+
+  function submitSearch(e) {
+    e.preventDefault();
+
+    if (!searchValue) {
+      setError(true);
+      return;
+    }
+
+    setError(false);
+    triggerSearch(searchValue);
+  }
+
   return (
-    <form autoComplete="off" onSubmit={submitSearch}>
-      <Grid container spacing={0} mt={7} alignItems="center" wrap="nowrap">
+    <form autoComplete="off" onSubmit={submitSearch} noValidate>
+      <Grid container spacing={0} mt={7} alignItems="flex-start" wrap="nowrap">
         <TextField
           fullWidth
           className="search-text-field"
           disabled={isLoading}
-          label="Search movie title..."
+          label="Enter a movie title"
           value={searchValue}
+          error={error}
+          helperText={error && 'Please enter a movie title to start the search'}
           onChange={(e) => setSearchValue(e.target.value)}
         />
         <IconButton
