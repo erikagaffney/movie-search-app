@@ -15,14 +15,12 @@
 .movie-genre::after {
   position: absolute;
   content: ' ';
-  border-radius: 4px;
   right: -8px;
   top: 0;
   width: 40px;
   height: 100%;
-  /** how to not hard code this**/
-  background-color: #ff80ab;
   transform: skewX(-20deg);
+  z-index: -1;
 }
 
 .movie-poster {
@@ -30,6 +28,15 @@
   object-fit: cover;
 }
 
-.critic-ratings {
-  width: 50%;
+.movie-poster,
+.movie-poster-container {
+  height: 100px;
+}
+
+.movie-poster-container {
+  width: 100px;
+}
+
+.ratings-loader {
+  min-width: 100px;
 }

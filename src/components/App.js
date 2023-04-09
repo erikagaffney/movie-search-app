@@ -1,19 +1,22 @@
-import '../App.css';
-import Box from '@mui/material/Box';
-import CircularProgress from '@mui/material/CircularProgress';
 import Container from '@mui/material/Container';
-import EmptySearch from './EmptySearch';
-import ErrorAlert from './ErrorAlert';
-import Fade from '@mui/material/Fade';
+
+import '../App.css';
 import API from '../api/MoviesAPI';
+import ErrorAlert from './ErrorAlert';
 import Header from './Header';
+import MovieTable from './MovieTable';
 import SearchBar from './SearchBar';
+
 import { useState } from 'react';
 
 function App() {
+  // the value of the current search (in the search bar)
   const [searchValue, setSearchValue] = useState('');
+  // loading state for the movies call
   const [isLoading, setIsLoading] = useState(false);
+  // the movie results from the API
   const [movies, setMovies] = useState(null);
+  // error alert for empty search or failed API call
   const [showAlert, setShowAlert] = useState(false);
 
   function submitSearch(e) {
@@ -32,12 +35,12 @@ function App() {
     // make API call to get movies
     API.getMovies(searchValue)
       .then((res) => setMovies(res.Search))
-      .catch((error) => setShowAlert(true))
+      .catch(() => setShowAlert(true))
       .finally(() => setIsLoading(false));
   }
 
   return (
-    <Container maxWidth="lg" sx={{ mb: 5 }}>
+    <Container maxWidth="md" sx={{ mb: 5 }}>
       <Header />
       <main>
         <section>
@@ -49,19 +52,7 @@ function App() {
           />
         </section>
         <section>
-          {!movies && !isLoading && <EmptySearch />}
-          {/* {movies && !isLoading && <Results movies={movies} />} */}
-          <Fade
-            in={isLoading}
-            style={{
-              transitionDelay: isLoading ? '800ms' : '0ms'
-            }}
-            unmountOnExit
-          >
-            <Box height="40" textAlign="center" mt={8}>
-              <CircularProgress />
-            </Box>
-          </Fade>
+          <MovieTable movies={movies} isLoading={isLoading} />
         </section>
       </main>
       <ErrorAlert
