@@ -3,3 +3,6 @@
 
 # System Files
 .DS_Store
+
+# Unit Tests
+/coverage
