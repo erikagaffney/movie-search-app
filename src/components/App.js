@@ -5,36 +5,36 @@ import API from '../api/MoviesAPI';
 import ErrorAlert from './ErrorAlert';
 import Header from './Header';
 import MovieTable from './MovieTable';
+import NoResults from './NoResults';
 import SearchBar from './SearchBar';
 
 import { useState } from 'react';
 
 function App() {
-  // the value of the current search (in the search bar)
-  const [searchValue, setSearchValue] = useState('');
   // loading state for the movies call
   const [isLoading, setIsLoading] = useState(false);
   // the movie results from the API
   const [movies, setMovies] = useState(null);
-  // error alert for empty search or failed API call
+  // error alert for failed API call
   const [showAlert, setShowAlert] = useState(false);
+  // reason for no results
+  const [noResultsReason, setNoResultsReason] = useState('');
 
-  function submitSearch(e) {
-    // prevent default
-    e.preventDefault();
-
-    // if user didn't input a search, don't call API
-    if (!searchValue) {
-      setShowAlert(true);
-      return;
-    }
-
+  function triggerSearch(searchValue) {
     // set is loading to true
     setIsLoading(true);
+    setNoResultsReason('');
 
     // make API call to get movies
     API.getMovies(searchValue)
-      .then((res) => setMovies(res.Search))
+      .then((res) => {
+        if (!res.Search) {
+          setNoResultsReason(res.Error);
+          setMovies([]);
+        } else {
+          setMovies(res.Search);
+        }
+      })
       .catch(() => setShowAlert(true))
       .finally(() => setIsLoading(false));
   }
@@ -44,25 +44,20 @@ function App() {
       <Header />
       <main>
         <section>
-          <SearchBar
-            isLoading={isLoading}
-            searchValue={searchValue}
-            setSearchValue={setSearchValue}
-            submitSearch={submitSearch}
-          />
+          <SearchBar isLoading={isLoading} triggerSearch={triggerSearch} />
         </section>
         <section>
-          <MovieTable movies={movies} isLoading={isLoading} />
+          {movies?.length === 0 ? (
+            <NoResults reason={noResultsReason} />
+          ) : (
+            <MovieTable movies={movies} isLoading={isLoading} />
+          )}
         </section>
       </main>
       <ErrorAlert
         showAlert={showAlert}
         setShowAlert={setShowAlert}
-        alertMessage={
-          searchValue
-            ? 'Uh oh. Something went wrong on our end. Please try again.'
-            : 'Please enter a movie title to start the search.'
-        }
+        alertMessage="Uh oh. Something went wrong on our end. Please try again."
       />
     </Container>
   );

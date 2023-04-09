@@ -23,7 +23,8 @@ function MoviePoster({ movie }) {
       <img
         className="movie-poster"
         src={movie.Poster}
-        alt={`Poster for ${movie.Title}`}
+        role="presentation"
+        alt=""
         style={imageLoading ? { display: 'none' } : {}}
         onLoad={() => setImageLoading(false)}
       />

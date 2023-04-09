@@ -1,4 +1,5 @@
 import '../App.css';
+import MoviePoster from './MoviePoster';
 
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';

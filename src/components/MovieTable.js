@@ -5,6 +5,7 @@ import MovieRow from './MovieRow';
 import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
 import CircularProgress from '@mui/material/CircularProgress';
+import LinearProgress from '@mui/material/LinearProgress';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
@@ -25,12 +26,13 @@ function MovieTable({ movies, isLoading }) {
         </Box>
       </Fade>
     );
-  } else if (!movies || movies.length === 0) {
+  } else if (!movies) {
     return <EmptySearch />;
   }
 
   return (
     <>
+      {isLoading && <LinearProgress sx={{ mt: 4 }} />}
       <Typography variant="h4" component="h2" color="text.secondary" my={4}>
         {movies.length} Results
       </Typography>
