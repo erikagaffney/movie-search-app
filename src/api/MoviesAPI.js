@@ -1,5 +1,5 @@
 // MOVE TO env
-const apiKey = '***REMOVED***';
+const apiKey = process.env.REACT_APP_API_KEY;
 const baseUrl = `http://www.omdbapi.com/?type=movie&page=1&apikey=${apiKey}`;
 
 async function getMovies(searchText) {
