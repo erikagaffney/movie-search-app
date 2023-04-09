@@ -1,33 +1,36 @@
 import { createTheme } from '@mui/material/styles';
 
-// A custom theme for this app
-const lightTheme = createTheme({
+const theme = createTheme({
+  typography: {
+    h5: {
+      fontSize: '1.2rem'
+    }
+  },
   palette: {
-    mode: 'light',
     secondary: {
       main: '#ff80ab'
+    }
+  },
+  breakpoints: {
+    values: {
+      xxs: 0,
+      xs: 375,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536
     }
   }
 });
 
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#00bcd4'
-    },
-    secondary: {
-      main: '#ff80ab'
-    },
-    text: {
-      primary: '#fafafa'
-    },
-    background: {
-      default: '#3b3838'
-    }
+theme.typography.h5 = {
+  fontSize: '1.2rem',
+  [theme.breakpoints.up('sm')]: {
+    fontSize: '1.5rem'
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '2rem'
   }
-});
+};
 
-const themes = { light: lightTheme, dark: darkTheme };
-
-export default themes;
+export default theme;
