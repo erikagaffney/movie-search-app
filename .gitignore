@@ -6,3 +6,6 @@
 
 # Unit Tests
 /coverage
+
+# Env Variables
+.env*
