@@ -1,20 +1,22 @@
 import '../App.css';
-import IconButton from '@mui/material/IconButton';
 import Grid from '@mui/material/Grid';
+import IconButton from '@mui/material/IconButton';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import TextField from '@mui/material/TextField';
-
 import { useState } from 'react';
 
 function SearchBar({ triggerSearch, isLoading }) {
-  // searchBarValue
+  // the value of the search
   const [searchValue, setSearchValue] = useState('');
   // error to show when input is empty
   const [error, setError] = useState(false);
 
   function submitSearch(e) {
+    // prevent full page reload
     e.preventDefault();
 
+    // if not a search value, show the input error
+    // don't call the trigger search or API
     if (!searchValue) {
       setError(true);
       return;
