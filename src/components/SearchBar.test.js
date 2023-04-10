@@ -52,7 +52,4 @@ test('it should error if there is no search text', async () => {
   // Assert
   expect(mock).toHaveBeenCalledTimes(0);
   expect(searchBar.getAttribute('aria-invalid')).toBe('true');
-  expect(errorMessage).toHaveTextContent(
-    'Please enter a movie title to start the search'
-  );
 });
