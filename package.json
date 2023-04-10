@@ -15,14 +15,17 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
-    "@testing-library/user-event": "^14.4.3"
+    "@testing-library/user-event": "^14.4.3",
+    "husky": "^8.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:coverage": "npm run test -- --coverage",
-    "eject": "react-scripts eject"
+    "test:commit": "npm test -- --watchAll=false",
+    "eject": "react-scripts eject",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
