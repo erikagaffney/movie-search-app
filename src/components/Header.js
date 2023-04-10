@@ -1,4 +1,3 @@
-import '../App.css';
 import AppBar from '@mui/material/AppBar';
 import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
@@ -18,6 +17,7 @@ function Header() {
               className="header-logo"
               alt=""
               role="presentation"
+              width="45"
             />
             <Typography variant="h5" component="span" ml={2} flexGrow="1">
               Movie Search

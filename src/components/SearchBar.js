@@ -25,18 +25,32 @@ function SearchBar({ triggerSearch, isLoading }) {
   }
 
   return (
-    <form autoComplete="off" onSubmit={submitSearch} noValidate>
-      <Grid container spacing={0} mt={7} alignItems="flex-start" wrap="nowrap">
+    <Grid
+      container
+      spacing={0}
+      mt={7}
+      alignItems="flex-start"
+      wrap="nowrap"
+      component="form"
+      autoComplete="off"
+      onSubmit={submitSearch}
+      noValidate
+    >
+      <Grid item flexGrow={1}>
         <TextField
           fullWidth
+          id="searchBar"
           className="search-text-field"
           disabled={isLoading}
+          required
           label="Enter a movie title"
           value={searchValue}
           error={error}
           helperText={error && 'Please enter a movie title to start the search'}
           onChange={(e) => setSearchValue(e.target.value)}
         />
+      </Grid>
+      <Grid item>
         <IconButton
           aria-label="search"
           className="btn-search-submit"
@@ -53,7 +67,7 @@ function SearchBar({ triggerSearch, isLoading }) {
           <SearchOutlinedIcon sx={{ color: 'white' }} />
         </IconButton>
       </Grid>
-    </form>
+    </Grid>
   );
 }
 
