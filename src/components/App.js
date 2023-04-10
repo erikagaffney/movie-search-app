@@ -4,8 +4,6 @@ import '../App.css';
 import API from '../api/MoviesAPI';
 import ErrorAlert from './ErrorAlert';
 import Header from './Header';
-import MovieTable from './MovieTable';
-import NoResults from './NoResults';
 import SearchBar from './SearchBar';
 
 import { useState } from 'react';
@@ -46,13 +44,7 @@ function App() {
         <section>
           <SearchBar isLoading={isLoading} triggerSearch={triggerSearch} />
         </section>
-        <section>
-          {movies?.length === 0 ? (
-            <NoResults reason={noResultsReason} />
-          ) : (
-            <MovieTable movies={movies} isLoading={isLoading} />
-          )}
-        </section>
+        <section></section>
       </main>
       <ErrorAlert
         showAlert={showAlert}
