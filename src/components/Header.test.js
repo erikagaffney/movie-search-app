@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import Header from './Header';
 
 test('renders the movie search header', async () => {
@@ -7,11 +7,11 @@ test('renders the movie search header', async () => {
 
   // Act
   const banner = screen.getByRole('banner');
-  const header = banner?.querySelector('span');
+  const header = within(banner).getByText('Movie Search');
 
   // Assert
   expect(banner).toBeInTheDocument();
-  expect(header).toHaveTextContent(/Movie Search/i);
+  expect(header).toBeInTheDocument();
 });
 
 test('renders the logo', () => {
