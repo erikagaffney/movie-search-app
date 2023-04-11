@@ -3,7 +3,7 @@ import Skeleton from '@mui/material/Skeleton';
 import { useState } from 'react';
 
 function MoviePoster({ movie }) {
-  const posterMissing = movie.Poster.toLowerCase() === 'n/a';
+  const posterMissing = !movie?.Poster || movie.Poster.toLowerCase() === 'n/a';
   const [imageLoading, setImageLoading] = useState(true);
 
   if (posterMissing) {

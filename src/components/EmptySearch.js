@@ -10,7 +10,7 @@ function EmptySearch() {
       backgroundColor="secondary.main"
       borderRadius="50% 20% / 10% 40%"
     >
-      <Typography variant="h4" component="h2" textAlign="center" mx={5}>
+      <Typography variant="h4" component="h1" textAlign="center" mx={5}>
         Search for a movie to begin!
       </Typography>
     </Box>
