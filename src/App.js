@@ -1,11 +1,11 @@
 import Container from '@mui/material/Container';
 
-import '../App.css';
-import API from '../api/MoviesAPI';
-import Content from './Content';
-import ErrorAlert from './ErrorAlert';
-import Header from './Header';
-import SearchBar from './SearchBar';
+import './App.css';
+import API from './api/MoviesAPI';
+import Content from './components/Content';
+import ErrorAlert from './components/ErrorAlert';
+import Header from './components/Header';
+import SearchBar from './components/SearchBar';
 
 import { useState } from 'react';
 
