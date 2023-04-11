@@ -2,6 +2,7 @@ import Container from '@mui/material/Container';
 
 import '../App.css';
 import API from '../api/MoviesAPI';
+import Content from './Content';
 import ErrorAlert from './ErrorAlert';
 import Header from './Header';
 import SearchBar from './SearchBar';
@@ -21,7 +22,6 @@ function App() {
   function triggerSearch(searchValue) {
     // set is loading to true
     setIsLoading(true);
-    setNoResultsReason('');
 
     // make API call to get movies
     API.getMovies(searchValue)
@@ -31,6 +31,7 @@ function App() {
           setMovies([]);
         } else {
           setMovies(res.Search);
+          setNoResultsReason('');
         }
       })
       .catch(() => setShowAlert(true))
@@ -44,7 +45,11 @@ function App() {
         <section>
           <SearchBar isLoading={isLoading} triggerSearch={triggerSearch} />
         </section>
-        <section></section>
+        <Content
+          movies={movies}
+          isLoading={isLoading}
+          noResultsReason={noResultsReason}
+        />
       </main>
       <ErrorAlert
         showAlert={showAlert}
