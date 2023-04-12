@@ -6,7 +6,8 @@ function renderComponent() {
     { imdbID: 'sample_id', Year: '2014', Title: 'When Harry Met Sally' },
     { imdbID: 'sample_id2', Year: '2020', Title: 'Title of Other Movie' }
   ];
-  render(<MovieTable movies={movies} />);
+  const count = 2;
+  render(<MovieTable results={{ movies, count }} updatePage={jest.fn()} />);
 
   return movies;
 }
@@ -14,7 +15,8 @@ function renderComponent() {
 test('should render a count of the results based on the movies', () => {
   // Arrange
   const movies = [];
-  render(<MovieTable movies={movies} />);
+  const count = 0;
+  render(<MovieTable results={{ movies, count }} updatePage={jest.fn()} />);
 
   //Act
   const heading = screen.getByRole('heading');

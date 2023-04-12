@@ -1,4 +1,4 @@
-import '../App.css';
+import '../../App.css';
 import Skeleton from '@mui/material/Skeleton';
 import { useState } from 'react';
 
