@@ -2,6 +2,11 @@ import Paper from '@mui/material/Paper';
 import Typeography from '@mui/material/Typography';
 
 function MovieGenre({ genre }) {
+  if (!genre || genre.toLowerCase() === 'n/a') {
+    return;
+  }
+
+  const formattedGenre = genre?.split(', ').join(' \u2022 ');
   return (
     <Paper
       elevation={0}
@@ -18,7 +23,7 @@ function MovieGenre({ genre }) {
         mt={1}
         textTransform="uppercase"
       >
-        Genre: {genre}
+        Genre: {formattedGenre}
       </Typeography>
     </Paper>
   );

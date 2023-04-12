@@ -41,9 +41,7 @@ test('should not render if there are no ratings', () => {
   render(<MovieRatings ratings={ratings} />);
 
   //Act
-  const noRatingsText = screen.getByText(
-    'No critic ratings available for this movie'
-  );
+  const noRatingsText = screen.getByText('No critic ratings available');
 
   // Assert
   expect(noRatingsText).toBeInTheDocument();

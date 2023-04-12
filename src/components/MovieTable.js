@@ -1,5 +1,4 @@
 import '../App.css';
-import MovieDetail from './MovieDetail';
 import MoviePoster from './MoviePoster';
 
 import Collapse from '@mui/material/Collapse';
@@ -59,9 +58,7 @@ function MovieRow({ movie }) {
       </TableRow>
       <TableRow key={movie.imdbID + ' Detail'}>
         <TableCell sx={{ p: 0 }} colSpan={6}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <MovieDetail movie={movie} />
-          </Collapse>
+          <Collapse in={open} timeout="auto" unmountOnExit></Collapse>
         </TableCell>
       </TableRow>
     </>
