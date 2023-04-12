@@ -1,10 +1,11 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import NoResults from './NoResults';
 
 test('renders the component with the too many results state', async () => {
   // Arrange
-  const noResultReason = 'too MANY results';
-  render(<NoResults reason={noResultReason} />);
+  const reason = 'too MANY results';
+  render(<NoResults reason={reason} onSearch={jest.fn()} />);
 
   // Act
   const header = screen.getByRole('heading');
@@ -22,8 +23,8 @@ test('renders the component with the too many results state', async () => {
 
 test('renders the component with the no results state', () => {
   // Arrange
-  const noResultReason = 'some other reason';
-  render(<NoResults reason={noResultReason} />);
+  const reason = 'some other reason';
+  render(<NoResults reason={reason} onSearch={jest.fn()} />);
 
   // Act
   const header = screen.getByRole('heading');
@@ -36,4 +37,29 @@ test('renders the component with the no results state', () => {
   expect(divider).toBeInTheDocument();
   expect(suggestions).toBeInTheDocument();
   expect(suggestions.children).toHaveLength(2);
+});
+
+test('renders a list of previous successful searches', () => {
+  // Arrange
+  const mock = jest.fn();
+  const reason = 'some other reason';
+  const previousSearches = [
+    { value: 'hello', count: 720 },
+    { value: 'whatever', count: 475 }
+  ];
+  render(
+    <NoResults
+      reason={reason}
+      onSearch={mock}
+      previousSearches={previousSearches}
+    />
+  );
+
+  // Act
+  const previousSearchButtons = screen.getAllByRole('button');
+  previousSearchButtons.forEach((button, index) => {
+    // Assert
+    expect(button).toBeInTheDocument();
+    expect(button).toHaveTextContent(previousSearches[index].value);
+  });
 });

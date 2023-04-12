@@ -1,9 +1,9 @@
 // MOVE TO env
 const apiKey = process.env.REACT_APP_API_KEY;
-const baseUrl = `http://www.omdbapi.com/?type=movie&page=1&apikey=${apiKey}`;
+const baseUrl = `http://www.omdbapi.com/?type=movie&apikey=${apiKey}`;
 
-async function getMovies(searchText) {
-  const response = await fetch(baseUrl + `&s=${searchText}`);
+async function getMovies(searchText, pageNumber) {
+  const response = await fetch(baseUrl + `&s=${searchText}&page=${pageNumber}`);
   return response.json();
 }
 
