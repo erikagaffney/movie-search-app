@@ -6,8 +6,16 @@ test('renders the movie genres', async () => {
   render(<MovieGenre genre={'Comedy, drama'} />);
 
   // Act
-  const genre = screen.getByText('Genre: Comedy, drama');
+  const genre = screen.getByText('Genre: Comedy \u2022 drama');
 
   // Assert
   expect(genre).toBeInTheDocument();
+});
+
+test('does not render if no genre', async () => {
+  // Arrange
+  const { container } = render(<MovieGenre genre={'N/a'} />);
+
+  // Assert
+  expect(container).toBeEmptyDOMElement();
 });

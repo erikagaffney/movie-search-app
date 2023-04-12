@@ -6,7 +6,8 @@ function EmptySearch() {
     <Box
       sx={{ mx: { xxs: 1, sm: 'auto' }, maxWidth: { sm: '300px' } }}
       py={8}
-      my={8}
+      mb={4}
+      color="text.secondary"
       backgroundColor="secondary.main"
       borderRadius="50% 20% / 10% 40%"
     >

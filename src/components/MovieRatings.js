@@ -15,7 +15,7 @@ function MovieRatings({ ratings }) {
   };
 
   if (!ratings || ratings.length === 0) {
-    return <p>No critic ratings available for this movie</p>;
+    return <p>No critic ratings available</p>;
   }
 
   return (

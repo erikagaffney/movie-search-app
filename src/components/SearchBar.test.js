@@ -20,7 +20,7 @@ test('should render an input and a button', () => {
 test('it should call trigger search when the search is submitted', async () => {
   // Arrange
   const mock = jest.fn();
-  render(<SearchBar triggerSearch={mock} />);
+  render(<SearchBar onSearch={mock} />);
 
   // Act
   const searchBar = screen.getByRole('textbox', {
@@ -40,7 +40,7 @@ test('it should call trigger search when the search is submitted', async () => {
 test('it should error if there is no search text', async () => {
   // Arrange
   const mock = jest.fn();
-  render(<SearchBar triggerSearch={mock} />);
+  render(<SearchBar onSearch={mock} />);
 
   // Act
   const searchBar = screen.getByRole('textbox', {
@@ -52,4 +52,22 @@ test('it should error if there is no search text', async () => {
   // Assert
   expect(mock).toHaveBeenCalledTimes(0);
   expect(searchBar.getAttribute('aria-invalid')).toBe('true');
+});
+
+test('should clear out the search bar on a search', async () => {
+  // Arrange
+  const mock = jest.fn();
+  render(<SearchBar onSearch={mock} />);
+
+  // Act
+  const searchBar = screen.getByRole('textbox', {
+    name: /enter a movie title/i
+  });
+  const button = screen.getByRole('button');
+  await userEvent.click(searchBar);
+  await userEvent.keyboard('Inception');
+  await userEvent.click(button);
+
+  // Assert
+  expect(searchBar).toHaveTextContent('');
 });

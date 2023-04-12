@@ -5,7 +5,7 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 
-function SearchBar({ triggerSearch, isLoading }) {
+function SearchBar({ onSearch, isLoading }) {
   // the value of the search
   const [searchValue, setSearchValue] = useState('');
   // error to show when input is empty
@@ -23,7 +23,8 @@ function SearchBar({ triggerSearch, isLoading }) {
     }
 
     setError(false);
-    triggerSearch(searchValue);
+    onSearch(searchValue);
+    setSearchValue('');
   }
 
   return (

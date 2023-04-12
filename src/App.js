@@ -43,7 +43,9 @@ function App() {
       <Header />
       <main>
         <section>
-          <SearchBar isLoading={isLoading} triggerSearch={triggerSearch} />
+          <Box sx={isLoading ? { mb: 0 } : { mb: 4.5 }}>
+            <SearchBar isLoading={isLoading} onSearch={onSearch} />
+          </Box>
         </section>
         <Content
           movies={movies}
