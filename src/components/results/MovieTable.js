@@ -16,11 +16,12 @@ import Typography from '@mui/material/Typography';
 import { useEffect, useState } from 'react';
 
 function MovieRow({ movie }) {
+  const { Title: title, Year: year, imdbID: imdbId, Poster: poster } = movie;
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      <TableRow key={`${movie.imdbID} HighLevel`} sx={{ minHeight: '125px' }}>
+      <TableRow key={`${imdbId} HighLevel`} sx={{ minHeight: '125px' }}>
         <TableCell
           sx={{
             pr: { xs: 0, sm: 1 },
@@ -29,7 +30,7 @@ function MovieRow({ movie }) {
           }}
           className="movie-poster-container"
         >
-          <MoviePoster movie={movie} />
+          <MoviePoster poster={poster} />
         </TableCell>
         <TableCell
           sx={{
@@ -38,11 +39,11 @@ function MovieRow({ movie }) {
           }}
         >
           <Typography variant="h6" component="p" color="text.secondary">
-            {movie.Title}
+            {title}
           </Typography>
-          {movie.Year && (
+          {year && (
             <Typography variant="body" component="p" color="text.secondary">
-              Released In: {movie.Year}
+              Released In: {year}
             </Typography>
           )}
         </TableCell>
@@ -56,7 +57,7 @@ function MovieRow({ movie }) {
           </IconButton>
         </TableCell>
       </TableRow>
-      <TableRow key={movie.imdbID + ' Detail'}>
+      <TableRow key={imdbId + ' Detail'}>
         <TableCell sx={{ p: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit></Collapse>
         </TableCell>
@@ -73,20 +74,22 @@ function MovieTable({ results: { movies, count }, updatePage }) {
     <MovieRow movie={movie} key={movie.imdbID} />
   ));
 
-  function onPageChange(event, value) {
-    setPageNumber(value);
-    updatePage(value);
-
+  function scrollToTop(event) {
     const anchor = (event.target.ownerDocument || document).querySelector(
       '#anchor'
     );
 
-    if (anchor) {
+    anchor &&
       anchor.scrollIntoView({
         block: 'center',
         behavior: 'smooth'
       });
     }
+
+  function onPageChange(event, value) {
+    setPageNumber(value);
+    updatePage(value);
+    scrollToTop(event);
   }
 
   return (

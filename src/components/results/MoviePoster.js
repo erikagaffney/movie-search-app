@@ -2,8 +2,8 @@ import '../../App.css';
 import Skeleton from '@mui/material/Skeleton';
 import { useState } from 'react';
 
-function MoviePoster({ movie }) {
-  const posterMissing = !movie?.Poster || movie.Poster.toLowerCase() === 'n/a';
+function MoviePoster({ poster }) {
+  const posterMissing = !poster || poster.toLowerCase() === 'n/a';
   const [imageLoading, setImageLoading] = useState(true);
 
   if (posterMissing) {
@@ -22,7 +22,7 @@ function MoviePoster({ movie }) {
       )}
       <img
         className="movie-poster"
-        src={movie.Poster}
+        src={poster}
         role="presentation"
         alt=""
         style={imageLoading ? { display: 'none' } : {}}

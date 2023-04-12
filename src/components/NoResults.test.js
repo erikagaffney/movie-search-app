@@ -63,3 +63,27 @@ test('renders a list of previous successful searches', () => {
     expect(button).toHaveTextContent(previousSearches[index].value);
   });
 });
+
+test('calls on search on previous search click', async () => {
+  // Arrange
+  const mock = jest.fn();
+  const reason = 'some other reason';
+  const previousSearches = [
+    { value: 'hello', count: 720 },
+    { value: 'whatever', count: 475 }
+  ];
+  render(
+    <NoResults
+      reason={reason}
+      onSearch={mock}
+      previousSearches={previousSearches}
+    />
+  );
+
+  // Act
+  const helloButton = screen.getByRole('button', { name: 'hello' });
+  await userEvent.click(helloButton);
+
+  // Assert
+  expect(mock).toHaveBeenCalledWith('hello');
+});
