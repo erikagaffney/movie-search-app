@@ -1,4 +1,4 @@
-import '../App.css';
+import '../../App.css';
 import MoviePoster from './MoviePoster';
 
 import Collapse from '@mui/material/Collapse';

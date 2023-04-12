@@ -7,7 +7,7 @@ import API from './api/MoviesAPI';
 import EmptySearch from './components/EmptySearch';
 import ErrorAlert from './components/ErrorAlert';
 import Header from './components/Header';
-import MovieTable from './components/MovieTable';
+import MovieTable from './components/results/MovieTable';
 import NoResults from './components/NoResults';
 import SearchBar from './components/SearchBar';
 
