@@ -5,15 +5,15 @@ import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import KeyboardArrowDownOutlined from '@mui/icons-material/KeyboardArrowDownOutlined';
 import KeyboardArrowUpOutlined from '@mui/icons-material/KeyboardArrowUpOutlined';
+import Pagination from '@mui/material/Pagination';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
-import { styled } from '@mui/material/styles';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function MovieRow({ movie }) {
   const [open, setOpen] = useState(false);
@@ -65,15 +65,40 @@ function MovieRow({ movie }) {
   );
 }
 
-function MovieTable({ movies }) {
+function MovieTable({ results: { movies, count }, updatePage }) {
+  const [pageNumber, setPageNumber] = useState(1);
+  useEffect(() => setPageNumber(1), [count]);
+
   const renderedMovies = movies?.map((movie) => (
     <MovieRow movie={movie} key={movie.imdbID} />
   ));
 
+  function onPageChange(event, value) {
+    setPageNumber(value);
+    updatePage(value);
+
+    const anchor = (event.target.ownerDocument || document).querySelector(
+      '#anchor'
+    );
+
+    if (anchor) {
+      anchor.scrollIntoView({
+        block: 'center',
+        behavior: 'smooth'
+      });
+    }
+  }
+
   return (
     <>
-      <Typography variant="h4" component="h1" color="text.secondary" my={4}>
-        {movies?.length} Results
+      <Typography
+        variant="h4"
+        component="h1"
+        color="text.secondary"
+        mb={4}
+        id="anchor"
+      >
+        {count} Results
       </Typography>
       <TableContainer>
         <Table aria-label="movie search results">
@@ -103,6 +128,13 @@ function MovieTable({ movies }) {
           <TableBody>{renderedMovies}</TableBody>
         </Table>
       </TableContainer>
+      <Pagination
+        sx={{ py: 3, '& > ul': { justifyContent: 'center' } }}
+        count={Math.ceil(count / 10)}
+        page={pageNumber}
+        onChange={onPageChange}
+        color="secondary"
+      />
     </>
   );
 }
