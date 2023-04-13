@@ -86,7 +86,7 @@ function MovieTable({
   const [pageNumber, setPageNumber] = useState<number>(1);
   useEffect(() => setPageNumber(1), [count]);
 
-  const renderedMovies = movies?.map((movie) => (
+  const renderedMovies = movies?.map((movie: Movie) => (
     <MovieRow movie={movie} key={movie.imdbID} />
   ));
 
@@ -96,6 +96,7 @@ function MovieTable({
     ).querySelector('#anchor');
 
     anchor &&
+      anchor.scrollIntoView &&
       anchor.scrollIntoView({
         block: 'center',
         behavior: 'smooth'
