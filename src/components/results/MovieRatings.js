@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 
 function MovieRatings({ ratings }) {
   const formatRating = function ({ Value: value }) {
-    value = value.replace(/[^0-9.\/]/g, '');
+    value = value.replace(/[^0-9./]/g, '');
     // calculate the rating on a 5 point scale
     let [numerator, denominator] = value.includes('/')
       ? value.split('/')

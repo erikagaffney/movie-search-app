@@ -1,72 +1,45 @@
 # movie-search-app
 
-Search for movies powered by the online movie database (OMDb)
+Search for movies powered by the online movie database (OMDb).
 
-## Running Locally
+By [Erika Gaffney](mailto:erikagaffney.2014@gmail.com)
 
-1. Run `npm i` to install necessary packages
-2. Get a free api key from [OMDb](https://www.omdbapi.com/apikey.aspx)
-3. Add .env.local file to root of project
-4. Add API key to local env variables by adding `REACT_APP_API_KEY={%your api key%}` to the .env.local file
-5. Run `npm run start` to start the app in development mode
-6. Open [http://localhost:3000](http://localhost:3000) to view it in your browser
+[erikagaffney github](https://github.com/erikagaffney)
 
-## Other Scripts
+## Running the Application Locally
 
-### `npm test`
+1. Ensure you have [NodeJS](https://nodejs.org/en/download) v18 installed
+2. Close locally using `git clone https://github.com/erikagaffney/movie-search-app.git`
+3. Install dependencies using `npm install`
+4. Run tests without watch mode using `npm run test:ci`
+   <br>4a. Run tests with coverage using `npm run test:coverage`
+5. Start your server using `npm run start`
+6. Navigate to app in [browser](http://localhost:3000)
 
-Launches the test runner in the interactive watch mode.
+## Disussion
 
-### `npm run test:coverage`
+- Languages Used: HTML, CSS, React, Jest, and Javascript
+- This app was created with [CRA (create react app)](https://create-react-app.dev/)
 
-Runs the tests through jest with added coverage information.
+## Requirements
 
-### `npm run build`
+The original requirements were:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Consume the OMDB web API's "By Search" functionality to display information about at least ten movies in a format like a list or grid.
+  - The results table that comes up after a search is a demonstration of the OMDB web API's "By Search" functionality
+- Consume the OMDB web API's "By ID" functionality to allow a user to click on a movie item to view the details.
+  - The details collapsable drawer under the main movie title is a demonstration of the OMDB web API's "By ID" functionality
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Required:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Use more than one React component
+  - The search bar, movie table, and no results screen are all separate react components, as well as being made up of smaller components.
+- Use both state and props
+- Demonstrate knowledge of component lifecycle
 
-### `npm run eject`
+Bonus:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Use MUI, a React library for Google's Material Design...and a project started here at Text-Em-All. 🤓
+  - Most building block components used to build this application are from MUI
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Use TypeScript: TBD
