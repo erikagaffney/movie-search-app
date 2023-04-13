@@ -16,7 +16,7 @@ function SearchBar({ onSearch, isLoading }: Props) {
   // error to show when input is empty
   const [error, setError] = useState<boolean>(false);
 
-  function submitSearch(e: React.FormEvent) {
+  function submitSearch(e: React.FormEvent): void {
     // prevent full page reload
     e.preventDefault();
 

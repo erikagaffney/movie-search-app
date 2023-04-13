@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 interface MovieRating {
   Source: string;
   Value: string;
@@ -40,4 +41,9 @@ interface APIResults {
   Search: Movie[];
   totalResults: number;
   Error?: string;
+}
+
+interface PreviousSearches {
+  value: string;
+  count: number;
 }

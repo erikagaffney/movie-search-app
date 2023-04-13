@@ -40,7 +40,7 @@ function MovieDetail({ imdbID }: Props) {
   // error on loading the details
   const [error, setError] = useState<boolean>(false);
 
-  function setDefaultValue(detail: string, name: string) {
+  function setDefaultValue(detail: string, name: string): string {
     if (!detail || detail.toLowerCase() === 'n/a')
       return `No ${name} available.`;
 
@@ -48,7 +48,7 @@ function MovieDetail({ imdbID }: Props) {
   }
 
   // Set details based on what's available
-  function extractMovieDetails(res: MovieDetails) {
+  function extractMovieDetails(res: MovieDetails): void {
     let {
       Plot: plot,
       Language: language,
@@ -65,7 +65,7 @@ function MovieDetail({ imdbID }: Props) {
     setMovieDetails({ plot, language, rated, ratings, genre, otherDetails });
   }
 
-  function fetchMovieDetails() {
+  function fetchMovieDetails(): void {
     setDetailsLoading(true);
     setError(false);
     API.getMovieDetails(imdbID)

@@ -10,7 +10,6 @@ import Header from './components/Header';
 import MovieTable from './components/results/MovieTable';
 import NoResults from './components/NoResults';
 import SearchBar from './components/SearchBar';
-import './models/previousSearches.model';
 import './models/movie.model';
 
 import { useState } from 'react';

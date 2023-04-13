@@ -9,7 +9,7 @@ type Props = {
 };
 
 function MovieRatings({ ratings }: Props) {
-  const formatRating = function ({ Value: value }: { Value: string }) {
+  const formatRating = function ({ Value: value }: { Value: string }): number {
     value = value.replace(/[^0-9./]/g, '');
     // calculate the rating on a 5 point scale
     let [numerator, denominator]: Array<string> = value.includes('/')
