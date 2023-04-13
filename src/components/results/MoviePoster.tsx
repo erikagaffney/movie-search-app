@@ -2,12 +2,16 @@ import '../../App.css';
 import Skeleton from '@mui/material/Skeleton';
 import { useState } from 'react';
 
-function MoviePoster({ poster }) {
+type Props = {
+  poster: string;
+};
+
+function MoviePoster({ poster }: Props) {
   const posterMissing = !poster || poster.toLowerCase() === 'n/a';
-  const [imageLoading, setImageLoading] = useState(true);
+  const [imageLoading, setImageLoading] = useState<boolean>(true);
 
   if (posterMissing) {
-    return;
+    return <></>;
   }
 
   return (

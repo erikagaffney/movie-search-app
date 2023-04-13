@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import MoviePoster from './MoviePoster';
 
-function renderElement(posterSrc) {
+function renderElement(posterSrc: string) {
   const poster = posterSrc;
   const { container } = render(<MoviePoster poster={poster} />);
 

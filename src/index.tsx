@@ -5,7 +5,9 @@ import ReactDOM from 'react-dom/client';
 import theme from './theme';
 import { ThemeProvider } from '@mui/material/styles';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(
+  document.getElementById('root') || document.createElement('div')
+);
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>

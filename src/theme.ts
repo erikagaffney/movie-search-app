@@ -1,5 +1,12 @@
 import { createTheme } from '@mui/material/styles';
 
+declare module '@mui/material/styles' {
+  interface BreakpointOverrides {
+    xxs: true;
+  }
+  // The value of `type Breakpoint` will be `"xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "xxl"`.
+}
+
 const theme = createTheme({
   typography: {
     h5: {
