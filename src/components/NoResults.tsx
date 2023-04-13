@@ -4,9 +4,16 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+import '../models/previousSearches.model';
 
-function NoResults({ reason, previousSearches, onSearch }) {
-  const tooManyResults = reason?.toLowerCase().includes('too many');
+type Props = {
+  reason: string;
+  previousSearches: PreviousSearches[];
+  onSearch: (search: string) => void;
+};
+
+function NoResults({ reason, previousSearches, onSearch }: Props) {
+  const tooManyResults: boolean = reason?.toLowerCase().includes('too many');
 
   return (
     <Paper sx={{ p: 2 }}>

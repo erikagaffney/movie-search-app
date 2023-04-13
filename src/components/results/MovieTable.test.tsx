@@ -3,9 +3,21 @@ import userEvent from '@testing-library/user-event';
 import MovieTable from './MovieTable';
 
 function renderComponent(count = 2, updatePage = jest.fn()) {
-  const movies = [
-    { imdbID: 'sample_id', Year: '2014', Title: 'When Harry Met Sally' },
-    { imdbID: 'sample_id2', Year: '2020', Title: 'Title of Other Movie' }
+  const movies: Movie[] = [
+    {
+      imdbID: 'sample_id',
+      Year: '2014',
+      Title: 'When Harry Met Sally',
+      Poster: '',
+      Rating: []
+    },
+    {
+      imdbID: 'sample_id2',
+      Year: '2020',
+      Title: 'Title of Other Movie',
+      Poster: '',
+      Rating: []
+    }
   ];
   render(<MovieTable results={{ movies, count }} updatePage={updatePage} />);
 
@@ -14,7 +26,7 @@ function renderComponent(count = 2, updatePage = jest.fn()) {
 
 test('should render a count of the results based on the movies', () => {
   // Arrange
-  const movies = [];
+  const movies: Movie[] = [];
   const count = 0;
   render(<MovieTable results={{ movies, count }} updatePage={jest.fn()} />);
 
@@ -63,8 +75,14 @@ test('should render the title, year, and a button to toggle the details for each
 
 test('clicking the expand button should change the icon', async () => {
   // Arrange
-  const movies = [
-    { imdbID: 'sample_id', Year: '2014', Title: 'When Harry Met Sally' }
+  const movies: Movie[] = [
+    {
+      imdbID: 'sample_id',
+      Year: '2014',
+      Title: 'When Harry Met Sally',
+      Poster: '',
+      Rating: []
+    }
   ];
   const count = 1;
   render(<MovieTable results={{ movies, count }} updatePage={jest.fn()} />);
@@ -119,7 +137,7 @@ test('should handle page change', async () => {
   renderComponent(11, mock);
 
   // Act
-  const paginator = screen.queryByRole('list');
+  const paginator = screen.getByRole('list');
   const [prevPage, pageOne, pageTwo, nextPage] =
     within(paginator).getAllByRole('button');
 

@@ -4,7 +4,7 @@ import SearchBar from './SearchBar';
 
 test('should render an input and a button', () => {
   // Arrange
-  render(<SearchBar />);
+  render(<SearchBar onSearch={jest.fn()} isLoading={false} />);
 
   // Act
   const searchBar = screen.getByRole('textbox', {
@@ -20,7 +20,7 @@ test('should render an input and a button', () => {
 test('it should call trigger search when the search is submitted', async () => {
   // Arrange
   const mock = jest.fn();
-  render(<SearchBar onSearch={mock} />);
+  render(<SearchBar onSearch={mock} isLoading={false} />);
 
   // Act
   const searchBar = screen.getByRole('textbox', {
@@ -40,7 +40,7 @@ test('it should call trigger search when the search is submitted', async () => {
 test('it should error if there is no search text', async () => {
   // Arrange
   const mock = jest.fn();
-  render(<SearchBar onSearch={mock} />);
+  render(<SearchBar onSearch={mock} isLoading={false} />);
 
   // Act
   const searchBar = screen.getByRole('textbox', {
@@ -57,7 +57,7 @@ test('it should error if there is no search text', async () => {
 test('should clear out the search bar on a search', async () => {
   // Arrange
   const mock = jest.fn();
-  render(<SearchBar onSearch={mock} />);
+  render(<SearchBar onSearch={mock} isLoading={false} />);
 
   // Act
   const searchBar = screen.getByRole('textbox', {

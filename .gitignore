@@ -3,6 +3,7 @@
 
 # System Files
 .DS_Store
+settings.json
 
 # Unit Tests
 /coverage
