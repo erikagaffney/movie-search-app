@@ -11,10 +11,13 @@ By [Erika Gaffney](mailto:erikagaffney.2014@gmail.com)
 1. Ensure you have [NodeJS](https://nodejs.org/en/download) v18 installed
 2. Close locally using `git clone https://github.com/erikagaffney/movie-search-app.git`
 3. Install dependencies using `npm install`
-4. Run tests without watch mode using `npm run test:ci`
-   <br>4a. Run tests with coverage using `npm run test:coverage`
-5. Start your server using `npm run start`
-6. Navigate to app in [browser](http://localhost:3000)
+4. Get a free api key from [OMDb](https://www.omdbapi.com/apikey.aspx)
+5. Add new `.env.local` file to root of project
+6. Add API key to local env variables by adding `REACT_APP_API_KEY={%your api key%}` to the .env.local file
+7. Start your server using `npm run start`
+8. Navigate to app in [browser](http://localhost:3000)
+9. Run tests without watch mode using `npm run test:ci`
+   <br>9a. Run tests with coverage using `npm run test:coverage`
 
 ## Disussion
 
