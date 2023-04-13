@@ -15,10 +15,15 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import { useEffect, useState } from 'react';
+import '../../models/movie.model';
 
-function MovieRow({ movie }) {
+type MovieRowProps = {
+  movie: Movie;
+};
+
+function MovieRow({ movie }: MovieRowProps) {
   const { Title: title, Year: year, imdbID: imdbId, Poster: poster } = movie;
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   return (
     <>
@@ -43,7 +48,7 @@ function MovieRow({ movie }) {
             {title}
           </Typography>
           {year && (
-            <Typography variant="body" component="p" color="text.secondary">
+            <Typography variant="body2" component="p" color="text.secondary">
               Released In: {year}
             </Typography>
           )}
@@ -69,18 +74,26 @@ function MovieRow({ movie }) {
   );
 }
 
-function MovieTable({ results: { movies, count }, updatePage }) {
-  const [pageNumber, setPageNumber] = useState(1);
+type MovieTableProps = {
+  results: MovieResults;
+  updatePage: (page: number) => void;
+};
+
+function MovieTable({
+  results: { movies, count },
+  updatePage
+}: MovieTableProps) {
+  const [pageNumber, setPageNumber] = useState<number>(1);
   useEffect(() => setPageNumber(1), [count]);
 
   const renderedMovies = movies?.map((movie) => (
     <MovieRow movie={movie} key={movie.imdbID} />
   ));
 
-  function scrollToTop(event) {
-    const anchor = (event?.target?.ownerDocument || document).querySelector(
-      '#anchor'
-    );
+  function scrollToTop(event: React.ChangeEvent<unknown>) {
+    const anchor = (
+      (event?.target as Element)?.ownerDocument || document
+    ).querySelector('#anchor');
 
     anchor &&
       anchor.scrollIntoView({
@@ -89,7 +102,7 @@ function MovieTable({ results: { movies, count }, updatePage }) {
       });
   }
 
-  function onPageChange(event, value) {
+  function onPageChange(event: React.ChangeEvent<unknown>, value: number) {
     setPageNumber(value);
     updatePage(value);
     scrollToTop(event);

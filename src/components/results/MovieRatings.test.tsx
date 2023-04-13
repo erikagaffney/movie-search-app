@@ -3,7 +3,7 @@ import MovieRatings from './MovieRatings';
 
 test('should render the ratings on the screen for each source', () => {
   // Arrange
-  const ratings = [
+  const ratings: MovieRating[] = [
     {
       Source: 'Internet Movie Database',
       Value: '6.6/10'
@@ -27,7 +27,7 @@ test('should render the ratings on the screen for each source', () => {
   // Assert
   expect(list).toBeInTheDocument();
   expect(list.children).toHaveLength(3);
-  ratings.forEach((rating) =>
+  ratings.forEach((rating: MovieRating) =>
     expect(screen.getByText(rating.Source)).toBeInTheDocument()
   );
   expect(IMDBRating.getAttribute('aria-label')).toBe('3.5 Stars');
@@ -37,7 +37,7 @@ test('should render the ratings on the screen for each source', () => {
 
 test('should not render if there are no ratings', () => {
   // Arrange
-  const ratings = [];
+  const ratings: MovieRating[] = [];
   render(<MovieRatings ratings={ratings} />);
 
   //Act

@@ -5,13 +5,18 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 
-function SearchBar({ onSearch, isLoading }) {
-  // the value of the search
-  const [searchValue, setSearchValue] = useState('');
-  // error to show when input is empty
-  const [error, setError] = useState(false);
+type Props = {
+  onSearch: (search: string) => void;
+  isLoading: boolean;
+};
 
-  function submitSearch(e) {
+function SearchBar({ onSearch, isLoading }: Props) {
+  // the value of the search
+  const [searchValue, setSearchValue] = useState<string>('');
+  // error to show when input is empty
+  const [error, setError] = useState<boolean>(false);
+
+  function submitSearch(e: React.FormEvent): void {
     // prevent full page reload
     e.preventDefault();
 

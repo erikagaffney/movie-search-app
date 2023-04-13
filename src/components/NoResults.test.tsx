@@ -5,7 +5,9 @@ import NoResults from './NoResults';
 test('renders the component with the too many results state', async () => {
   // Arrange
   const reason = 'too MANY results';
-  render(<NoResults reason={reason} onSearch={jest.fn()} />);
+  render(
+    <NoResults reason={reason} onSearch={jest.fn()} previousSearches={[]} />
+  );
 
   // Act
   const header = screen.getByRole('heading');
@@ -24,7 +26,9 @@ test('renders the component with the too many results state', async () => {
 test('renders the component with the no results state', () => {
   // Arrange
   const reason = 'some other reason';
-  render(<NoResults reason={reason} onSearch={jest.fn()} />);
+  render(
+    <NoResults reason={reason} onSearch={jest.fn()} previousSearches={[]} />
+  );
 
   // Act
   const header = screen.getByRole('heading');

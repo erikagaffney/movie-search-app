@@ -4,19 +4,11 @@ import API from '../../api/MoviesAPI';
 
 jest.mock('../../api/MoviesAPI');
 
-const movies = [{ imdbID: 'sample_id3', Rated: '', Language: '', Plot: '' }];
-
-function successfulRender(movie) {
-  API.getMovieDetails.mockResolvedValue(movie);
-
-  render(<MovieDetail imdbID={movie.imdbID} />);
-}
-
 beforeEach(() => jest.clearAllMocks());
 
 test('should render an alert if fetch returns a 200 with an error', async () => {
   // Arrange
-  API.getMovieDetails.mockResolvedValue({ Error: 'I failed!' });
+  (API.getMovieDetails as jest.Mock).mockResolvedValue({ Error: 'I failed!' });
 
   // Act
   render(<MovieDetail imdbID={'sample_id'} />);
@@ -27,7 +19,7 @@ test('should render an alert if fetch returns a 200 with an error', async () => 
 
 test('should render an alert if fetch errors out', async () => {
   // Arrange
-  API.getMovieDetails.mockRejectedValue(new Error());
+  (API.getMovieDetails as jest.Mock).mockRejectedValue(new Error());
 
   // Act
   render(<MovieDetail imdbID={'sample_id'} />);
@@ -46,7 +38,7 @@ test('should render a table of details & a plot', async () => {
     Language: 'English',
     Plot: 'Once upon a time a girl lived in a far away land.'
   };
-  API.getMovieDetails.mockResolvedValue(movie);
+  (API.getMovieDetails as jest.Mock).mockResolvedValue(movie);
   render(<MovieDetail imdbID={movie.imdbID} />);
 
   // Act
@@ -69,7 +61,7 @@ test('should render default values for movie details that are n/a', async () => 
     Ratings: [],
     Genre: ''
   };
-  API.getMovieDetails.mockResolvedValue(movie);
+  (API.getMovieDetails as jest.Mock).mockResolvedValue(movie);
   render(<MovieDetail imdbID={movie.imdbID} />);
 
   // Act
@@ -96,7 +88,7 @@ test('should render default values for movie details that are empty strings', as
     Ratings: [],
     Genre: ''
   };
-  API.getMovieDetails.mockResolvedValue(movie);
+  (API.getMovieDetails as jest.Mock).mockResolvedValue(movie);
   render(<MovieDetail imdbID={movie.imdbID} />);
 
   // Act

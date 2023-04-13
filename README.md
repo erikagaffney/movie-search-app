@@ -18,7 +18,7 @@ By [Erika Gaffney](mailto:erikagaffney.2014@gmail.com)
 
 ## Disussion
 
-- Languages Used: HTML, CSS, React, Jest, and Javascript
+- Languages Used: HTML, CSS, React, Jest, and Typescript
 - This app was created with [CRA (create react app)](https://create-react-app.dev/)
 
 ## Requirements
@@ -40,6 +40,8 @@ Required:
 Bonus:
 
 - Use MUI, a React library for Google's Material Design...and a project started here at Text-Em-All. 🤓
+
   - Most building block components used to build this application are from MUI
 
-Use TypeScript: TBD
+- Use Typescript
+  - The project was upgarded to use typescript in all components and tests

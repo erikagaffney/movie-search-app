@@ -1,12 +1,16 @@
 import Paper from '@mui/material/Paper';
 import Typeography from '@mui/material/Typography';
 
-function MovieGenre({ genre }) {
+type Props = {
+  genre: string;
+};
+
+function MovieGenre({ genre }: Props) {
   if (!genre || genre.toLowerCase() === 'n/a') {
-    return;
+    return <></>;
   }
 
-  const formattedGenre = genre?.split(', ').join(' \u2022 ');
+  const formattedGenre: string = genre?.split(', ').join(' \u2022 ');
   return (
     <Paper
       elevation={0}

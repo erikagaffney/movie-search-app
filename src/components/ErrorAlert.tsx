@@ -2,7 +2,13 @@ import '../App.css';
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 
-function ErrorAlert({ showAlert, setShowAlert, alertMessage }) {
+type Props = {
+  showAlert: boolean;
+  alertMessage: string;
+  setShowAlert: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+function ErrorAlert({ showAlert, setShowAlert, alertMessage }: Props) {
   return (
     <Snackbar
       open={showAlert}

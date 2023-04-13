@@ -2,16 +2,21 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
+import '../../models/movie.model';
 
-function MovieRatings({ ratings }) {
-  const formatRating = function ({ Value: value }) {
+type Props = {
+  ratings: Array<MovieRating>;
+};
+
+function MovieRatings({ ratings }: Props) {
+  const formatRating = function ({ Value: value }: { Value: string }): number {
     value = value.replace(/[^0-9./]/g, '');
     // calculate the rating on a 5 point scale
-    let [numerator, denominator] = value.includes('/')
+    let [numerator, denominator]: Array<string> = value.includes('/')
       ? value.split('/')
-      : [value, 100];
+      : [value, '100'];
 
-    return (numerator * 5) / denominator;
+    return (Number(numerator) * 5) / Number(denominator);
   };
 
   if (!ratings || ratings.length === 0) {
@@ -20,7 +25,7 @@ function MovieRatings({ ratings }) {
 
   return (
     <List>
-      {ratings?.map((rating) => (
+      {ratings?.map((rating: MovieRating) => (
         <ListItem
           key={rating.Source + ' Ratings'}
           sx={{

@@ -17,11 +17,17 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typeography from '@mui/material/Typography';
 
+import '../../models/movie.model';
+
 import { useEffect, useState } from 'react';
 
-function MovieDetail({ imdbID }) {
+type Props = {
+  imdbID: string;
+};
+
+function MovieDetail({ imdbID }: Props) {
   // movie details returned from the movie by ID call in the API
-  const [movieDetails, setMovieDetails] = useState({
+  const [movieDetails, setMovieDetails] = useState<MappedMovieDetails>({
     plot: '',
     language: '',
     rated: '',
@@ -30,11 +36,11 @@ function MovieDetail({ imdbID }) {
     otherDetails: {}
   });
   // loading state for the movie details
-  const [detailsLoading, setDetailsLoading] = useState(true);
+  const [detailsLoading, setDetailsLoading] = useState<boolean>(true);
   // error on loading the details
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<boolean>(false);
 
-  function setDefaultValue(detail, name) {
+  function setDefaultValue(detail: string, name: string): string {
     if (!detail || detail.toLowerCase() === 'n/a')
       return `No ${name} available.`;
 
@@ -42,7 +48,7 @@ function MovieDetail({ imdbID }) {
   }
 
   // Set details based on what's available
-  function extractMovieDetails(res) {
+  function extractMovieDetails(res: MovieDetails): void {
     let {
       Plot: plot,
       Language: language,
@@ -59,11 +65,13 @@ function MovieDetail({ imdbID }) {
     setMovieDetails({ plot, language, rated, ratings, genre, otherDetails });
   }
 
-  function fetchMovieDetails() {
+  function fetchMovieDetails(): void {
     setDetailsLoading(true);
     setError(false);
     API.getMovieDetails(imdbID)
-      .then((res) => (res.Error ? setError(true) : extractMovieDetails(res)))
+      .then((res: MovieDetails) =>
+        res.Error ? setError(true) : extractMovieDetails(res)
+      )
       .catch(() => setError(true))
       .finally(() => setDetailsLoading(false));
   }
@@ -136,10 +144,6 @@ function MovieDetail({ imdbID }) {
         <Typeography component="p" variant="body2">
           {detailsLoading ? <Skeleton /> : movieDetails.plot}
         </Typeography>
-
-        {/* <Button variant="text" sx={{ pl: 0, mt: 1 }}>
-          {detailsLoading ? <Skeleton /> : 'See more details'}
-        </Button> */}
       </Box>
     </>
   );

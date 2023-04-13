@@ -10,27 +10,30 @@ import Header from './components/Header';
 import MovieTable from './components/results/MovieTable';
 import NoResults from './components/NoResults';
 import SearchBar from './components/SearchBar';
+import './models/movie.model';
 
 import { useState } from 'react';
 
-let isFirstLoad = true;
-let currentSearch = '';
+let isFirstLoad: boolean = true;
+let currentSearch: string = '';
 
 function App() {
   // loading state for the movies call
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   // the movie results from the API
-  const [results, setResults] = useState({
+  const [results, setResults] = useState<MovieResults>({
     movies: null,
     count: 0,
     reason: ''
   });
   // error alert for failed API call
-  const [showAlert, setShowAlert] = useState(false);
+  const [showAlert, setShowAlert] = useState<boolean>(false);
   // previous searches to search for
-  const [previousSearches, setPreviousSearches] = useState([]);
+  const [previousSearches, setPreviousSearches] = useState<PreviousSearches[]>(
+    []
+  );
 
-  function addSearchToPrevious(count) {
+  function addSearchToPrevious(count: number): void {
     const searches = [...previousSearches];
     if (searches.find(({ value }) => value === currentSearch)) {
       return;
@@ -47,13 +50,13 @@ function App() {
   function handleSuccess({
     Search: movies,
     totalResults: count = 0,
-    Error: reason
-  }) {
+    Error: reason = ''
+  }: APIResults): void {
     reason || addSearchToPrevious(count);
     setResults({ movies, count, reason });
   }
 
-  function onSearch(searchValue, pageNumber = 1) {
+  function onSearch(searchValue: string, pageNumber: number = 1): void {
     currentSearch = searchValue;
     setIsLoading(true);
     API.getMovies(searchValue, pageNumber)
@@ -64,7 +67,7 @@ function App() {
         isFirstLoad = false;
       });
   }
-  const updatePage = onSearch.bind(null, currentSearch);
+  const updatePage: (page: number) => void = onSearch.bind(null, currentSearch);
 
   return (
     <Container maxWidth="md" sx={{ mb: 5 }}>
@@ -83,7 +86,7 @@ function App() {
               <MovieTable results={results} updatePage={updatePage} />
             ) : (
               <NoResults
-                reason={results.reason}
+                reason={results.reason || ''}
                 previousSearches={previousSearches}
                 onSearch={onSearch}
               />
