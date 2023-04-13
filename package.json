@@ -23,7 +23,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:coverage": "npm run test -- --watchAll=false --coverage",
-    "test:commit": "npm test -- --watchAll=false",
+    "test:ci": "npm test -- --watchAll=false",
     "eject": "react-scripts eject",
     "prepare": "husky install"
   },

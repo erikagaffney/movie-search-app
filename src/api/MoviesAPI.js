@@ -12,7 +12,9 @@ async function getMovieDetails(movieId) {
   return response.json();
 }
 
-export default {
+const api = {
   getMovies,
   getMovieDetails
 };
+
+export default api;
