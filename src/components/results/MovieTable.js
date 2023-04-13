@@ -1,5 +1,6 @@
 import '../../App.css';
 import MoviePoster from './MoviePoster';
+import MovieDetail from './MovieDetail';
 
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
@@ -49,7 +50,7 @@ function MovieRow({ movie }) {
         </TableCell>
         <TableCell sx={{ py: 0, pr: 1, width: '60px' }}>
           <IconButton
-            aria-label="expand details"
+            aria-label={`${open ? 'collapse' : 'expand'} details`}
             size="small"
             onClick={() => setOpen(!open)}
           >
@@ -59,7 +60,9 @@ function MovieRow({ movie }) {
       </TableRow>
       <TableRow key={imdbId + ' Detail'}>
         <TableCell sx={{ p: 0 }} colSpan={6}>
-          <Collapse in={open} timeout="auto" unmountOnExit></Collapse>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <MovieDetail imdbID={imdbId} />
+          </Collapse>
         </TableCell>
       </TableRow>
     </>
@@ -75,7 +78,7 @@ function MovieTable({ results: { movies, count }, updatePage }) {
   ));
 
   function scrollToTop(event) {
-    const anchor = (event.target.ownerDocument || document).querySelector(
+    const anchor = (event?.target?.ownerDocument || document).querySelector(
       '#anchor'
     );
 
@@ -84,7 +87,7 @@ function MovieTable({ results: { movies, count }, updatePage }) {
         block: 'center',
         behavior: 'smooth'
       });
-    }
+  }
 
   function onPageChange(event, value) {
     setPageNumber(value);
@@ -131,13 +134,15 @@ function MovieTable({ results: { movies, count }, updatePage }) {
           <TableBody>{renderedMovies}</TableBody>
         </Table>
       </TableContainer>
-      <Pagination
-        sx={{ py: 3, '& > ul': { justifyContent: 'center' } }}
-        count={Math.ceil(count / 10)}
-        page={pageNumber}
-        onChange={onPageChange}
-        color="secondary"
-      />
+      {count > 10 && (
+        <Pagination
+          sx={{ py: 3, '& > ul': { justifyContent: 'center' } }}
+          count={Math.ceil(count / 10)}
+          page={pageNumber}
+          onChange={onPageChange}
+          color="secondary"
+        />
+      )}
     </>
   );
 }
