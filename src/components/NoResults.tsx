@@ -67,7 +67,7 @@ function NoResults({ reason, previousSearches, onSearch }: Props) {
               >
                 <Button
                   variant="text"
-                  sx={{ justifyContent: 'flex-start' }}
+                  sx={{ justifyContent: 'flex-start', color: 'primary' }}
                   onClick={() => onSearch(value)}
                 >
                   {value}

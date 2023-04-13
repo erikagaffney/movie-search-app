@@ -16,7 +16,7 @@ function MovieGenre({ genre }: Props) {
       elevation={0}
       sx={{
         backgroundColor: 'primary.light',
-        color: 'white'
+        color: 'black'
       }}
     >
       <Typeography
