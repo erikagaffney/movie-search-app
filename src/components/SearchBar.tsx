@@ -4,6 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
+import { inputLabelClasses } from '@mui/material/InputLabel';
 
 type Props = {
   onSearch: (search: string) => void;
@@ -54,6 +55,14 @@ function SearchBar({ onSearch, isLoading }: Props) {
           label="Enter a movie title"
           value={searchValue}
           error={error}
+          InputLabelProps={{
+            sx: {
+              [`&.${inputLabelClasses.shrink}`]: {
+                // set the color of the label when shrinked for ADA purposes
+                color: 'primary.dark'
+              }
+            }
+          }}
           helperText={error && 'Please enter a movie title to start the search'}
           onChange={(e) => setSearchValue(e.target.value)}
         />

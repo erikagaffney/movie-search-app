@@ -9,15 +9,18 @@ const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 function Header() {
   return (
     <>
-      <AppBar position="fixed" color="primary">
+      <AppBar
+        position="fixed"
+        sx={{ backgroundColor: 'secondary.main', color: 'white' }}
+      >
         <Container maxWidth="md">
-          <Toolbar>
+          <Toolbar sx={{ p: 0 }}>
             <img
-              src="film-reel-white.svg"
+              src="movie-clapper.png"
               className="header-logo"
               alt=""
               role="presentation"
-              width="45"
+              width="35"
             />
             <Typography variant="h5" component="span" ml={2} flexGrow="1">
               Movie Search

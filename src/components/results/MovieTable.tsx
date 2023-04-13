@@ -27,11 +27,12 @@ function MovieRow({ movie }: MovieRowProps) {
 
   return (
     <>
-      <TableRow key={`${imdbId} HighLevel`} sx={{ minHeight: '125px' }}>
+      <TableRow key={`${imdbId} HighLevel`} sx={{ height: '113px' }}>
         <TableCell
           sx={{
             pr: { xs: 0, sm: 1 },
-            p: 1,
+            p: 0.5,
+            pb: 0,
             display: { xxs: 'none', xs: 'table-cell' }
           }}
           className="movie-poster-container"
@@ -41,7 +42,7 @@ function MovieRow({ movie }: MovieRowProps) {
         <TableCell
           sx={{
             px: 0,
-            py: 1
+            py: 0.5
           }}
         >
           <Typography variant="h6" component="p" color="text.secondary">
@@ -94,7 +95,6 @@ function MovieTable({
     const anchor = (
       (event?.target as Element)?.ownerDocument || document
     ).querySelector('#anchor');
-
     anchor &&
       anchor.scrollIntoView &&
       anchor.scrollIntoView({
