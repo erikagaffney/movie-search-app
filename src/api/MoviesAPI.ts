@@ -1,7 +1,7 @@
 import '../models/movie.model';
 
 const apiKey = process.env.REACT_APP_API_KEY;
-const baseUrl = `http://www.omdbapi.com/?type=movie&apikey=${apiKey}`;
+const baseUrl = `https://www.omdbapi.com/?type=movie&apikey=${apiKey}`;
 
 async function getMovies(
   searchText: string,
