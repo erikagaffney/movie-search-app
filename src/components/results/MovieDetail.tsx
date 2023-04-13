@@ -79,6 +79,7 @@ function MovieDetail({ imdbID }: Props) {
   useEffect(() => {
     // make API call to get movie details when first rendered
     fetchMovieDetails();
+    // eslint-disable-next-line
   }, [imdbID]);
 
   if (error) {
