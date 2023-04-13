@@ -39,7 +39,7 @@ function App() {
       return;
     }
 
-    if (searches.length > 5) {
+    if (searches.length >= 5) {
       searches.pop();
     }
 
