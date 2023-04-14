@@ -14,7 +14,6 @@ import './models/movie.model';
 
 import { useState } from 'react';
 
-let isFirstLoad: boolean = true;
 let currentSearch: string = '';
 
 function App() {
@@ -33,6 +32,10 @@ function App() {
     []
   );
 
+  function resetApp(): void {
+    setResults({ movies: null, count: 0, reason: '' });
+  }
+
   function addSearchToPrevious(count: number): void {
     const searches = [...previousSearches];
     if (searches.find(({ value }) => value === currentSearch)) {
@@ -48,7 +51,7 @@ function App() {
   }
 
   function handleSuccess({
-    Search: movies,
+    Search: movies = [],
     totalResults: count = 0,
     Error: reason = ''
   }: APIResults): void {
@@ -62,16 +65,13 @@ function App() {
     API.getMovies(searchValue, pageNumber)
       .then(handleSuccess)
       .catch(() => setShowAlert(true))
-      .finally(() => {
-        setIsLoading(false);
-        isFirstLoad = false;
-      });
+      .finally(() => setIsLoading(false));
   }
   const updatePage: (page: number) => void = onSearch.bind(null, currentSearch);
 
   return (
     <Container maxWidth="md" sx={{ mb: 5 }}>
-      <Header />
+      <Header resetApp={resetApp} />
       <main>
         <section>
           <Box sx={isLoading ? { mb: 0 } : { mb: 4.5 }}>
@@ -80,8 +80,8 @@ function App() {
         </section>
         <section>
           {isLoading && <LinearProgress sx={{ my: 2 }} />}
-          {isFirstLoad && <EmptySearch />}
-          {!isFirstLoad &&
+          {!results.movies && <EmptySearch />}
+          {results.movies &&
             (results.count > 0 ? (
               <MovieTable results={results} updatePage={updatePage} />
             ) : (

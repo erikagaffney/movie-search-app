@@ -6,7 +6,7 @@ import { styled } from '@mui/material/styles';
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
-function Header() {
+function Header({ resetApp }: { resetApp: () => void }) {
   return (
     <>
       <AppBar
@@ -21,6 +21,7 @@ function Header() {
               alt=""
               role="presentation"
               width="35"
+              onClick={resetApp}
             />
             <Typography variant="h5" component="span" ml={2} flexGrow="1">
               Movie Search

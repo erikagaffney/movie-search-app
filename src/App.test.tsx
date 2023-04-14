@@ -156,3 +156,29 @@ test('should only add search to previous searches if successful and previous sea
   // Assert
   expect(recentSearches.children).toHaveLength(5);
 });
+
+test('should reset the app when clicking the logo', async () => {
+  // Arrange
+  render(<App />);
+  (API.getMovies as jest.Mock).mockResolvedValue({
+    Search: [
+      {
+        Title: 'Inception',
+        Year: '2018',
+        imdbID: 'ttyID',
+        Poster: '',
+        Rating: []
+      }
+    ],
+    totalResults: 4
+  });
+
+  // Act
+  await fireSearch();
+  const image = await screen.findByRole('presentation');
+  await userEvent.click(image);
+  const heading = await screen.findByRole('heading');
+
+  // Assert
+  expect(heading).toHaveTextContent('Search for a movie to begin');
+});
