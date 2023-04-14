@@ -29,7 +29,7 @@ function SearchBar({ onSearch, isLoading }: Props) {
     }
 
     setError(false);
-    onSearch(searchValue);
+    onSearch(searchValue.trim());
     setSearchValue('');
   }
 
