@@ -1,4 +1,5 @@
 import { render, screen, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Header from './Header';
 
 test('renders the movie search header', async () => {
@@ -23,4 +24,17 @@ test('renders the logo', () => {
 
   // Assert
   expect(logo).toBeInTheDocument();
+});
+
+test('click logo should call reset app', async () => {
+  // Arrange
+  const mock = jest.fn();
+  render(<Header resetApp={mock} />);
+
+  // Act
+  const logo = screen.getByRole('presentation');
+  await userEvent.click(logo);
+
+  // Assert
+  expect(mock).toHaveBeenCalledTimes(1);
 });
