@@ -23,6 +23,7 @@ By [Erika Gaffney](mailto:erikagaffney.2014@gmail.com)
 
 - Languages Used: HTML, CSS, React, Jest, and Typescript
 - This app was created with [CRA (create react app)](https://create-react-app.dev/)
+- This app was deployed with [Netlify](https://www.netlify.com/)
 
 ## Timeline
 
