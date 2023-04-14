@@ -31,6 +31,8 @@ function App() {
   const [previousSearches, setPreviousSearches] = useState<PreviousSearches[]>(
     []
   );
+  // error to show when searchbar is empty
+  const [searchBarError, setSearchBarError] = useState<boolean>(false);
 
   function resetApp(): void {
     setResults({ movies: null, count: 0, reason: '' });
@@ -62,6 +64,7 @@ function App() {
   function onSearch(searchValue: string, pageNumber: number = 1): void {
     currentSearch = searchValue;
     setIsLoading(true);
+    setSearchBarError(false);
     API.getMovies(searchValue, pageNumber)
       .then(handleSuccess)
       .catch(() => setShowAlert(true))
@@ -75,7 +78,12 @@ function App() {
       <main>
         <section>
           <Box sx={isLoading ? { mb: 0 } : { mb: 4.5 }}>
-            <SearchBar isLoading={isLoading} onSearch={onSearch} />
+            <SearchBar
+              isLoading={isLoading}
+              onSearch={onSearch}
+              error={searchBarError}
+              setError={setSearchBarError}
+            />
           </Box>
         </section>
         <section>
