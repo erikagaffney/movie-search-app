@@ -20,7 +20,7 @@ test('renders the logo', () => {
   render(<Header resetApp={jest.fn()} />);
 
   // Act
-  const logo = screen.getByRole('presentation');
+  const logo = screen.getByAltText('go to main page');
 
   // Assert
   expect(logo).toBeInTheDocument();
@@ -32,7 +32,7 @@ test('click logo should call reset app', async () => {
   render(<Header resetApp={mock} />);
 
   // Act
-  const logo = screen.getByRole('presentation');
+  const logo = screen.getByAltText('go to main page');
   await userEvent.click(logo);
 
   // Assert
