@@ -24,6 +24,15 @@ By [Erika Gaffney](mailto:erikagaffney.2014@gmail.com)
 - Languages Used: HTML, CSS, React, Jest, and Typescript
 - This app was created with [CRA (create react app)](https://create-react-app.dev/)
 
+## Timeline
+
+I spent the following time on this project:
+
+- 2 days brushing up on javascript and learning react (+2 days the weekend before)
+- 1 day planning both the designs and the component layout of the website
+- 7 days coding / testing
+- 1 day bug fixing / updating designs
+
 ## Requirements
 
 The original requirements were:
