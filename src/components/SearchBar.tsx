@@ -7,15 +7,15 @@ import { useState } from 'react';
 import { inputLabelClasses } from '@mui/material/InputLabel';
 
 type Props = {
-  onSearch: (search: string) => void;
   isLoading: boolean;
+  error: boolean;
+  setError: (error: boolean) => void;
+  onSearch: (search: string) => void;
 };
 
-function SearchBar({ onSearch, isLoading }: Props) {
+function SearchBar({ onSearch, isLoading, error, setError }: Props) {
   // the value of the search
   const [searchValue, setSearchValue] = useState<string>('');
-  // error to show when input is empty
-  const [error, setError] = useState<boolean>(false);
 
   function submitSearch(e: React.FormEvent): void {
     // prevent full page reload
@@ -28,7 +28,6 @@ function SearchBar({ onSearch, isLoading }: Props) {
       return;
     }
 
-    setError(false);
     onSearch(searchValue.trim().replace(/[\u2019]/g, "'"));
     setSearchValue('');
   }

@@ -182,3 +182,18 @@ test('should reset the app when clicking the logo', async () => {
   // Assert
   expect(heading).toHaveTextContent('Search for a movie to begin');
 });
+
+test('it should error the search bar if there is no search text', async () => {
+  // Arrange
+  render(<App />);
+
+  // Act
+  const searchBar = screen.getByRole('textbox', {
+    name: /enter a movie title/i
+  });
+  const button = screen.getByRole('button');
+  await userEvent.click(button);
+
+  // Assert
+  expect(searchBar.getAttribute('aria-invalid')).toBe('true');
+});
