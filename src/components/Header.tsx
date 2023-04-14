@@ -19,8 +19,8 @@ function Header({ resetApp }: { resetApp: () => void }) {
             <img
               src="movie-clapper.png"
               className="header-logo"
-              alt=""
-              role="presentation"
+              title="Go to main page"
+              alt="go to main page"
               width="35"
               onClick={resetApp}
             />

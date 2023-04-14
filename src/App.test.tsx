@@ -175,7 +175,7 @@ test('should reset the app when clicking the logo', async () => {
 
   // Act
   await fireSearch();
-  const image = await screen.findByRole('presentation');
+  const image = screen.getByAltText('go to main page');
   await userEvent.click(image);
   const heading = await screen.findByRole('heading');
 
