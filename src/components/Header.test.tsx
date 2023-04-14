@@ -3,7 +3,7 @@ import Header from './Header';
 
 test('renders the movie search header', async () => {
   // Arrange
-  render(<Header />);
+  render(<Header resetApp={jest.fn()} />);
 
   // Act
   const banner = screen.getByRole('banner');
@@ -16,7 +16,7 @@ test('renders the movie search header', async () => {
 
 test('renders the logo', () => {
   // Arrange
-  render(<Header />);
+  render(<Header resetApp={jest.fn()} />);
 
   // Act
   const logo = screen.getByRole('presentation');
