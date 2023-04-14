@@ -29,7 +29,7 @@ function SearchBar({ onSearch, isLoading }: Props) {
     }
 
     setError(false);
-    onSearch(searchValue.trim());
+    onSearch(searchValue.trim().replace(/[\u2019]/g, "'"));
     setSearchValue('');
   }
 
