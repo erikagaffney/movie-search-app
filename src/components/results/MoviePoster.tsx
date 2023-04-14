@@ -1,6 +1,7 @@
 import '../../App.css';
 import Skeleton from '@mui/material/Skeleton';
 import { useState } from 'react';
+import Typography from '@mui/material/Typography';
 
 type Props = {
   poster: string;
@@ -10,9 +11,7 @@ function MoviePoster({ poster }: Props) {
   const posterMissing = !poster || poster.toLowerCase() === 'n/a';
   const [imageLoading, setImageLoading] = useState<boolean>(true);
 
-  if (posterMissing) {
-    return <></>;
-  }
+  const src = posterMissing ? './not-found.png' : poster;
 
   return (
     <>
@@ -25,13 +24,18 @@ function MoviePoster({ poster }: Props) {
         />
       )}
       <img
-        className="movie-poster"
-        src={poster}
+        className={`movie-poster ${posterMissing ? 'missing-poster' : ''}`}
+        src={src}
         role="presentation"
         alt=""
         style={imageLoading ? { display: 'none' } : {}}
         onLoad={() => setImageLoading(false)}
       />
+      {posterMissing && (
+        <Typography component="p" variant="body2" ml="6px">
+          no image
+        </Typography>
+      )}
     </>
   );
 }

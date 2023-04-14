@@ -66,12 +66,12 @@ test('should render default values for movie details that are n/a', async () => 
 
   // Act
   const rating = await screen.findByRole('cell', {
-    name: 'No rating available.'
+    name: 'No rating available'
   });
   const language = await screen.findByRole('cell', {
-    name: 'No language available.'
+    name: 'No language available'
   });
-  const plot = await screen.findByText('No plot available.');
+  const plot = await screen.findByText('No plot available');
 
   // Assert
   expect(rating).toBeInTheDocument();
@@ -93,12 +93,12 @@ test('should render default values for movie details that are empty strings', as
 
   // Act
   const rating = await screen.findByRole('cell', {
-    name: 'No rating available.'
+    name: 'No rating available'
   });
   const language = await screen.findByRole('cell', {
-    name: 'No language available.'
+    name: 'No language available'
   });
-  const plot = await screen.findByText('No plot available.');
+  const plot = await screen.findByText('No plot available');
 
   // Assert
   expect(rating).toBeInTheDocument();

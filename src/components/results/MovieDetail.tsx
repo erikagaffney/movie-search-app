@@ -42,7 +42,7 @@ function MovieDetail({ imdbID }: Props) {
 
   function setDefaultValue(detail: string, name: string): string {
     if (!detail || detail.toLowerCase() === 'n/a')
-      return `No ${name} available.`;
+      return `No ${name} available`;
 
     return detail;
   }

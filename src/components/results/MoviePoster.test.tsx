@@ -8,20 +8,26 @@ function renderElement(posterSrc: string) {
   return container;
 }
 
-test('should not render if movie poster is N/A', () => {
+test('shouldrender not found image if movie poster is N/A', () => {
   // Arrange
-  const container = renderElement('N/a');
+  renderElement('');
+
+  // Act
+  const image = screen.getByRole('presentation', { hidden: true });
 
   //Assert
-  expect(container).toBeEmptyDOMElement();
+  expect(image.getAttribute('src')).toBe('./not-found.png');
 });
 
-test('should not render if movie poster is falsey', () => {
+test('should render not found image if movie poster is falsey', () => {
   // Arrange
-  const container = renderElement('');
+  renderElement('');
+
+  // Act
+  const image = screen.getByRole('presentation', { hidden: true });
 
   //Assert
-  expect(container).toBeEmptyDOMElement();
+  expect(image.getAttribute('src')).toBe('./not-found.png');
 });
 
 test('should render the image as display none if in loading state', () => {
